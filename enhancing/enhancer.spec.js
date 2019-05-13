@@ -1,9 +1,8 @@
 const enhancer = require('./enhancer.js');
-// test away!
 
 let item1 = {
 	name: 'sword',
-	enhancement: 10,
+	enhancement: 0,
 	durability: 50
 };
 let item2 = {
@@ -41,7 +40,7 @@ describe('enhancer.js', () => {
 		it('should return an object, if enhancement is equal 20, it will not be changed. Otherwise increases by 1', () => {
 			expect(enhancer.succeed(item1)).toEqual({
 				name: item1.name,
-				enhancement: 11,
+				enhancement: 1,
 				durability: item1.durability
 			});
 			expect(enhancer.succeed(item2)).toEqual({
@@ -67,6 +66,17 @@ describe('enhancer.js', () => {
 				name: item3.name,
 				enhancement: item3.enhancement,
 				durability: 15
+			});
+		});
+	});
+	describe('get method', () => {
+		it('it should return an object, if enhancement greater then 0, name should contain enhancement level, else name is not modified', () => {
+			expect(enhancer.get(item1)).toEqual({
+				...item1
+			});
+			expect(enhancer.get(item2)).toEqual({
+				...item2,
+				name: '[+20]arbalest'
 			});
 		});
 	});
