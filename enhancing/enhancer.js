@@ -6,7 +6,10 @@ module.exports = {
 };
 
 function succeed(item) {
-	return { ...item };
+	return {
+		...item,
+		enhancement: item.enhancement < 20 ? item.enhancement + 1 : item.enhancement
+	};
 }
 
 function fail(item) {
@@ -26,3 +29,7 @@ function get(item) {
 // Items have name, durability and enhancement.
 // The item's enhancement it's a number from 0 to 20.
 // The item's durability it's a number from 0 to 100.
+
+// The item's enhancement increases by 1.
+// If the item enhancement level is 20, the enhancement level is not changed.
+// The durability of the item is not changed.
